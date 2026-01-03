@@ -1,4 +1,4 @@
-package NewPackage;
+package HomeWork6.NewPackage;
 
 class Main {
     public static void main(String[] args) {
