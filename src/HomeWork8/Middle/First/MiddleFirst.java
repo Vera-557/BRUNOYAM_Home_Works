@@ -11,131 +11,48 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class MiddleFirst {
-    Scanner sc = new Scanner(System.in);
-    Library book = new Library("Книги");
-    Library magazine = new Library("Журналы");
-    Library newspaper = new Library("Газеты");
-    Library since = new Library("Научные статьи");
-
-    {
-        //просто добавлю литературу, которая в наличии в отдельный блок вначале кода, чтоб он обнаруживал ее наличие в себе
-        book.addElement("Книга 1");
-        book.addElement("Книга 2");
-        magazine.addElement("magazine 1");
-        magazine.addElement("magazine 2");
-        newspaper.addElement("Газета 1");
-        newspaper.addElement("Газета 2");
-        since.addElement("Статья 1");
-        since.addElement("Статья 2");
-    }
-
     public static void main(String[] args) {
-        MiddleFirst a = new MiddleFirst();
-        System.out.println("Добро пожаловать в библиотеку");
-        System.out.println("Какой вид литературы вас интересует?");
-        a.libraryMethods();
+        Library library = new Library();
 
-    }
+        // Добавляем материалы в библиотеку
+        System.out.println("=== ДОБАВЛЕНИЕ МАТЕРИАЛОВ ===");
+        library.addMaterial(new Book("B001", "Мастер и Маргарита", "Михаил Булгаков", 1966));
+        library.addMaterial(new Book("B002", "Преступление и наказание", "Федор Достоевский", 1866));
+        library.addMaterial(new Magazine("M001", "Наука и жизнь", 5, "Научное издательство"));
+        library.addMaterial(new Newspaper("N001", "Ежедневные новости", "Иванов И.И."));
+        library.addMaterial(new ResearchPaper("R001", "Искусственный интеллект в медицине",
+                "Медицинская информатика", "МГУ", 45));
+        library.addMaterial(new Book("B001", "Дубликат", "Тест", 2000)); // Проверка дублирования
 
-    protected void libraryMethods() {
-        System.out.println("1 - книги, 2 - журналы, 3 - газеты, 4 - научные труды");
+        // Показываем статистику
+        library.showStatistics();
 
-        switch (sc.nextLine()) {
-            case "1" -> {
-                System.out.println("Книги");
-                books();
-            }
-            case "2" -> {
-                System.out.println("Журналы");
-                magazines();
-            }
-            case "3" -> {
-                System.out.println("Газеты");
-                newspapers();
-            }
-            case "4" -> {
-                System.out.println("Научные труды");
-                sinces();
-            }
-            default -> System.out.println("Неверный ввод");
-        }
-    }
+        // Пытаемся взять материалы
+        System.out.println("=== ВЫДАЧА МАТЕРИАЛОВ ===");
+        library.takeMaterial("B001"); // Успешно
+        library.takeMaterial("B001"); // Уже выдан
+        library.takeMaterial("B999"); // Не существует
 
-    private void library(Library library) {
-        System.out.println("Выберите действие:");
-        System.out.println("1 - вывести список литературы, 2 - найти литературу, 3 - добавить литературу, 4 - забрать литературу, 5 - количество единиц литературы");
-        String input = sc.nextLine();
-        switch (input) {
+        // Возвращаем материал
+        System.out.println("=== ВОЗВРАТ МАТЕРИАЛОВ ===");
+        library.returnMaterial("B001"); // Успешно
+        library.returnMaterial("B999"); // Не существует
 
-            case "1" -> {
-                System.out.println("Список литературы:");
-                System.out.println(library.toString());
-            }
-            case "2" -> {
-                System.out.println("Найти литературу");
-                System.out.println("Введите искомое название");
-                String find = sc.nextLine().trim();
-                if (library.findElement(find)) {
-                    System.out.println("Есть такая литература");
-                } else System.out.println("Такой литературы нет");
-            }
-            case "3" -> {
-                System.out.println("Добавить литературу");
-                String add = sc.nextLine().trim();
-                library.addElement(add);
-                System.out.println("Вы добавили " + add);
-                String [] elements = library.getElements();
-                System.out.println(Arrays.toString(elements));
-
-            }
-            case "4" -> {
-                System.out.println("Забрать литературу");
-                library.removeElement(sc.nextLine());
-                String [] elements = library.getElements();
-                System.out.println(Arrays.toString(elements));
-            }
-            case "5" -> {
-                System.out.println("В настоящий момент в наличии -> " + library.getSize() + "шт");
-            }
-            default -> System.out.println("Неверный ввод");
+        // Поиск материалов
+        System.out.println("=== ПОИСК МАТЕРИАЛОВ ===");
+        System.out.println("Поиск по названию 'наука':");
+        Material[] searchResults = library.searchByTitle("наука");
+        for (Material material : searchResults) {
+            System.out.println("  Найдено: " + material);
         }
 
-
-    }
-
-    private void books() {
-        library(book);
-//        System.out.println("Вы выбрали книги");
-//        System.out.println("Выберите действие:");
-//        System.out.println("1 - вывести список литературы, 2 - найти литературу, 3 - добавить литературу, 4 - забрать литературу");
-//        switch (sc.nextLine()){
-//            case "1" -> {
-//                System.out.println("Список литературы:");
-//                System.out.println(book.toString()); // первый способ вывода
-//                // String[] elements = book.getElements();
-//                // System.out.println(Arrays.toString(elements)); // второй способ вывода
-//            }
-//            case "2" -> {
-//                System.out.println("Найти литературу");
-//                System.out.println("Введите искомое название");
-//                String find = sc.nextLine().trim();
-//                if (book.findElement(find)){
-//                    System.out.println("Есть такая литература");
-//                } else System.out.println("Такой литературы нет");
-//            }
-//        }
-    }
-
-    private void magazines() {
-        library(magazine);
-    }
-
-    private void newspapers() {
-        library(newspaper);
-    }
-
-    private void sinces() {
-        library(since);
+        System.out.println("\nПоиск по типу 'Книга':");
+        Material[] books = library.searchByType("Книга");
+        for (Material material : books) {
+            System.out.println("  Найдено: " + material);
+        }
+        // Финальная статистика
+        library.showStatistics();
     }
 }
 
