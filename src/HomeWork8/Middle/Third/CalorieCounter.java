@@ -8,5 +8,17 @@ Exercises имеет собственную реализацию подсчёт�
 затрачено на упражнение (в минутах), и посчитать количество потраченных калорий.
  */
 
-public class MiddleThird {
+public class CalorieCounter {
+    //Так написала потому что такие условия по заданию, при чтении дословно
+    void raschet (Exercises exercises, double time){
+        exercises.calculateСalorie(exercises,time);
+    }
+
+    public static void main(String[] args){
+        CalorieCounter calorieCounter = new CalorieCounter();
+        calorieCounter.raschet(new Jumping(75,179,35),75);
+        calorieCounter.raschet(new Running(80,180,33),75);
+        calorieCounter.raschet(new Swimming(89,175,37),75);
+        calorieCounter.raschet(new Walking(76,173,29),75);
+    }
 }
