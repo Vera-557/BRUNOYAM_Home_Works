@@ -17,3 +17,16 @@ public interface Dog extends Mammal, Anumal{
 public class MiddleFourth {
 
 }
+ class Dog extends Animal {
+
+    public Dog(String name) {
+        super(name);// Это нужно для того, чтоб унаследовать конструктор класса родителя. Так, передавая значение в конструкторе - потомке оно перенаправляется
+    }//к родителю
+}
+class Animal{
+    String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+}

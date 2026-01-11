@@ -42,7 +42,7 @@ class Fridge {
         }
     }
 
-    static void main() {
+   public static void main(String [] args) {
         Product product1 = new Sausage(4);
         Product product2 = new Milk(2);
         Product product3 = new Bread(3);

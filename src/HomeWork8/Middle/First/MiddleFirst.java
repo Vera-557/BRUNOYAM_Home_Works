@@ -7,9 +7,6 @@ package HomeWork8.Middle.First;
 Также библиотека должна показывать, сколько книг имеется в данный момент.
  */
 
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class MiddleFirst {
     public static void main(String[] args) {
         Library library = new Library();
