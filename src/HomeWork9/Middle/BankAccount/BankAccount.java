@@ -44,16 +44,21 @@ Hard:
  */
 public class BankAccount {
     private int balance;
+    private String name;
 
     public BankAccount(int balance) {
         this.balance = balance;
     }
+    public BankAccount(String name, int balance) {
+        this.name = name;
+        this.balance = balance;
+    }
 
-//Положить деньги на счет
+    //Положить деньги на счет
     public void pop(int money) {
         balance += money;
     }
- //Вывести деньги со счета
+    //Вывести деньги со счета
     public void push(int money) {
         //реализовать метод
         if (money <= balance && money >= 0){
@@ -63,5 +68,10 @@ public class BankAccount {
 
     public int getBalance() {
         return balance;
+    }
+
+    @Override
+    public String toString() {
+        return "Имя владельца: " + name + ", баланс " + balance;
     }
 }
