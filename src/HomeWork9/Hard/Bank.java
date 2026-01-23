@@ -37,7 +37,7 @@ public class Bank {
         }
     }
 
-    void transit(Account account1, Account account2) {
+    void transit(Account account1, Account account2, double summ) {
         //перевод не превысит сумму все равно, так как у нас ограничение общей суммы стоит
     }
 
