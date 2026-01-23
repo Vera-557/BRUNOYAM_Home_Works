@@ -10,4 +10,21 @@ package HomeWork9.Hard;
 При написании программы не забывайте про модификаторы доступа (private, protected, public)
  */
 public class Bank {
+
+    double maxBalance = 1000;
+    double minBalance = 0;
+
+    void createAccount() {
+    }
+
+    void transit() {
+    }
+
+    double push() {
+    }
+
+    double pop() {
+    }
 }
+    class Account{}
+
