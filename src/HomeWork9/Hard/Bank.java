@@ -37,18 +37,42 @@ public class Bank {
         }
     }
 
-    void transit(Account account1, Account account2, double summ) {
+    void transit(String name1, String name2, double summ) {
         //перевод не превысит сумму все равно, так как у нас ограничение общей суммы стоит
+        for (int i = 0; i < accs.length; i++) {
+            if (accs[i] != null) {
+                if (accs[i].getName().equals(name1)) {
+                    accs[i].setBalance(accs[i].getBalance() + summ);
+                }
+                if (accs[i].getName().equals(name2)) {
+                    accs[i].setBalance(accs[i].getBalance() - summ);
+                }
+            }
+        }
+        //имитируем перевод
+    }
+//снять
+    void push(String name, double summ) {
+        for (int i = 0; i < accs.length; i++) {
+            if (accs[i] != null) {
+                if (accs[i].getName().equals(name)) {
+                    accs[i].setBalance(accs[i].getBalance() - summ);
+                }
+            }
+        }
+    }
+//внести
+    void pop(String name, double summ) {
+        for (int i = 0; i < accs.length; i++) {
+            if (accs[i] != null && (currentTotalBalance + summ <= maxBalance)) {
+                if (accs[i].getName().equals(name)) {
+                    accs[i].setBalance(accs[i].getBalance() + summ);
+                }
+            }
+        }
     }
 
-    double push() {
-        return 0;
-    }
-
-    double pop() {
-        return 0;
-    }
-    void show (){
+    void show() {
         for (Account account : accs) {
             if (account != null) {
                 System.out.println("Держатель счета: " + account.getName() + ", баланс: " + account.getBalance());
@@ -82,6 +106,7 @@ class Account {
         this.name = name;
     }
 }
+
 class Main {
     public static void main(String[] args) {
         Bank bank = new Bank();
@@ -90,6 +115,16 @@ class Main {
         bank.createAccount(new Account("Полина", 800));
         bank.createAccount(new Account("Зинаида", 100));
         bank.show();
+        System.out.println("----------------------------");
+        bank.transit("Нина", "Зинаида", 50);
+        bank.show();
+        System.out.println("----------------------------");
+        bank.pop("Нина", 100);
+        bank.show();
+        System.out.println("----------------------------");
+        bank.push("Кристина", 100);
+        bank.show();
+        System.out.println("----------------------------");
     }
 }
 
