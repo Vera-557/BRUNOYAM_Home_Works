@@ -55,5 +55,6 @@ public class DatabaseConnection {
 С Java 9 можно использовать private методы в интерфейсах для default методов
 
 6. Default метод — метод в интерфейсе с реализацией по умолчанию
+
     */
 }

@@ -8,8 +8,8 @@ package HomeWork9.Middle.Parking;
 Создайте объекты класса Car и в методе main заполните ими парковку. Не забывайте закрывать private поля для классов.
  */
 public class Parking {
-    private final int fullSize = 20;
-    private Car[] parkingArray = new Car[fullSize];
+    private final int FULLSIZE = 20;
+    private Car[] parkingArray = new Car[FULLSIZE];
     private int size = 0;
 
     //    Parking(Car[] parkingArray){
@@ -17,7 +17,7 @@ public class Parking {
 //    }
     //заехала машинка
     void push(Car parking){
-        if (size == fullSize){
+        if (size == FULLSIZE){
             System.out.println("Парковка заполнена");
             return;
         }
