@@ -8,7 +8,7 @@ package HomeWork9.Middle.BankAccount;
  */
 public class Bank {
     private BankAccount [] counts = new BankAccount[3];
-    int size = 0;
+    private int size = 0;
 
     void add(BankAccount bankAccount){
         counts[size] = bankAccount;
