@@ -6,5 +6,17 @@ package HomeWork10.Middle.ToDoPlanner;
 абстрактный класс AbstractTask, который будет реализовывать интерфейс Task. Общие методы executed() и
 isFinished() реализовать в AbstractTask, а метод showTask() сделать абстрактным.
  */
-public abstract class AbstractTask {
+public abstract class AbstractTask implements Task {
+
+    private boolean finished;
+    public void executed() {
+        finished = true;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public abstract void showTask();
+
 }
