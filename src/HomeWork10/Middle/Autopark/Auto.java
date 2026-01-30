@@ -15,7 +15,7 @@ package HomeWork10.Middle.Autopark;
 Создать экземпляры классов данных автомобилей, передать в конструктор параметры пробега и возраст
 автомобиля. Калькулятор должен выводить стоимость аренды автомобиля за час.
  */
-public class Auto {
+public abstract class Auto {
     private int madeInYear;
     private double running;
     private String name;
