@@ -16,7 +16,99 @@ package HomeWork10.Hard;
 Не забудьте об абстрактных классах и избегайте дублирование кода. По возможности используйте абстрактные
 классы, вынося в них повторяющийся код.
  */
-public abstract class Character {
-    Weapon weapon;
-    int health;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public abstract class Character implements Herorebel {
+    private Weapon weapon;
+    private int health;
+
+     Character(Weapon weapon, int health) {
+        this.weapon = weapon;
+        this.health = health;
+    }
+
+    public Character(){}
+
+    public void lossHP(Character character) {
+        health = character.health -= this.weapon.attack();
+    }
+    public void defenceHP(Character character) {
+        health = character.health += this.weapon.defense();
+    }
+    @Override
+    public void choice(int choice) {
+        while (true){
+            if (choice == 1){
+                System.out.println("Пистолет");
+                weapon = new Pistol();
+                break;
+            } else if (choice == 2) {
+                System.out.println("Меч");
+                weapon = new Sword();
+                break;
+            }else {
+                System.out.println("Копьё");
+                weapon = new Spear();
+                break;
+            }
+        }
+    }
+
+    public int getHealth() {
+        return health;
+    }
+}
+
+class Main {
+    Scanner scanner = new Scanner(System.in);
+    Random random = new Random();
+    Player player = new Player();
+    BadGuy badGuy = new BadGuy();
+
+    static void main() {
+        Main main = new Main();
+        main.area();
+    }
+
+    void area(){
+        System.out.println("Выберите оружие:");
+        System.out.println("1 - пистолет, 2 - меч, 3 - копьё");
+        int sc = scanner.nextInt();
+        player.choice(sc);
+        System.out.println("Компьютер делает выбор:");
+        int rn = random.nextInt(1,4);
+        badGuy.choice(rn);
+        System.out.println("Игрок первый делает ход");
+        scanner.nextLine();
+        while ((player.getHealth() > 0) || (badGuy.getHealth() > 0)) {
+            while (true) {
+                System.out.println("Ваш выбор: 1 - ударить, 2 - восстановиться");
+                int pull = scanner.nextInt();
+                if (pull == 1) {
+                    player.lossHP(badGuy);
+                    System.out.println("Атака. Здоровье врага = " + badGuy.getHealth());
+                    break;
+                }
+                if (pull == 2) {
+                    player.defenceHP(player);
+                    System.out.println("Восстановление здоровья " + player.getHealth());
+                    break;
+                }
+            }
+            System.out.println("Компьютер делает ход");
+            int compPull = random.nextInt(1,3);
+            if (compPull == 1) {
+                badGuy.lossHP(player);
+                System.out.println("Атака. Здоровье игрока = " + player.getHealth());
+            } else {
+                badGuy.defenceHP(badGuy);
+                System.out.println("Восстановление здоровья " + badGuy.getHealth());
+            }
+        }
+        if (player.getHealth() > badGuy.getHealth()){
+            System.out.println("Вы выиграли");
+        }else System.out.println("Вы проиграли");
+    }
 }
