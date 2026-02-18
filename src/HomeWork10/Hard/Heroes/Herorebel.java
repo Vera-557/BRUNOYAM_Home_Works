@@ -1,4 +1,4 @@
-package HomeWork10.Hard;
+package HomeWork10.Hard.Heroes;
 
 public interface Herorebel {
     void lossHP(Character character);

@@ -1,6 +1,8 @@
-package HomeWork10.Hard;
+package HomeWork10.Hard.Heroes;
 
-public class Player extends Character{
+import HomeWork10.Hard.Weapon.Weapon;
+
+public class Player extends Character {
     public Player(Weapon weapon, int health) {
         super(weapon, health);
     }

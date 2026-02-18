@@ -1,4 +1,10 @@
 package HomeWork10.Hard;
+
+import HomeWork10.Hard.Heroes.BadGuy;
+import HomeWork10.Hard.Heroes.Player;
+
+import java.util.Random;
+import java.util.Scanner;
 /*
 Создайте свою вселенную с супергероями и злодеями. У каждого героя и злодея есть оружие (меч, пистолет, копье),
 которое несёт в себе некое количество урона. Каждый персонаж в вашей вселенной может использовать своё оружие,
@@ -16,69 +22,24 @@ package HomeWork10.Hard;
 Не забудьте об абстрактных классах и избегайте дублирование кода. По возможности используйте абстрактные
 классы, вынося в них повторяющийся код.
  */
-
-import java.util.Random;
-import java.util.Scanner;
-
-public abstract class Character implements Herorebel {
-    private Weapon weapon;
-    private int health;
-
-     Character(Weapon weapon, int health) {
-        this.weapon = weapon;
-        this.health = health;
-    }
-
-    public Character(){}
-
-    public void lossHP(Character character) {
-        health = character.health -= this.weapon.attack();
-    }
-    public void defenceHP(Character character) {
-        health = character.health += this.weapon.defense();
-    }
-    @Override
-    public void choice(int choice) {
-        while (true){
-            if (choice == 1){
-                System.out.println("Пистолет");
-                weapon = new Pistol();
-                break;
-            } else if (choice == 2) {
-                System.out.println("Меч");
-                weapon = new Sword();
-                break;
-            }else {
-                System.out.println("Копьё");
-                weapon = new Spear();
-                break;
-            }
-        }
-    }
-
-    public int getHealth() {
-        return health;
-    }
-}
-
-class Main {
+public class Main {
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
     Player player = new Player();
     BadGuy badGuy = new BadGuy();
 
-    static void main() {
+    public static void main(String[] args) {
         Main main = new Main();
         main.area();
     }
 
-    void area(){
+    void area() {
         System.out.println("Выберите оружие:");
         System.out.println("1 - пистолет, 2 - меч, 3 - копьё");
         int sc = scanner.nextInt();
         player.choice(sc);
         System.out.println("Компьютер делает выбор:");
-        int rn = random.nextInt(1,4);
+        int rn = random.nextInt(1, 4);
         badGuy.choice(rn);
         System.out.println("Игрок первый делает ход");
         scanner.nextLine();
@@ -98,7 +59,7 @@ class Main {
                 }
             }
             System.out.println("Компьютер делает ход");
-            int compPull = random.nextInt(1,3);
+            int compPull = random.nextInt(1, 3);
             if (compPull == 1) {
                 badGuy.lossHP(player);
                 System.out.println("Атака. Здоровье игрока = " + player.getHealth());
@@ -107,8 +68,8 @@ class Main {
                 System.out.println("Восстановление здоровья " + badGuy.getHealth());
             }
         }
-        if (player.getHealth() > badGuy.getHealth()){
+        if (player.getHealth() > badGuy.getHealth()) {
             System.out.println("Вы выиграли");
-        }else System.out.println("Вы проиграли");
+        } else System.out.println("Вы проиграли");
     }
 }

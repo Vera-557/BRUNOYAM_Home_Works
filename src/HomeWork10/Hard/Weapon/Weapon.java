@@ -1,4 +1,4 @@
-package HomeWork10.Hard;
+package HomeWork10.Hard.Weapon;
 
 import java.util.Random;
 

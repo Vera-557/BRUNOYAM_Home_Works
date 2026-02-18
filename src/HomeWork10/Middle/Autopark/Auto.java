@@ -22,7 +22,7 @@ public abstract class Auto {
     private double ratio;
     private double rentTime;
 
-    Auto(String name, int madeInYear, double running, double ratio) {
+   public Auto(String name, int madeInYear, double running, double ratio) {
         setName(name);
         setMadeInYear(madeInYear);
         setRunning(running);

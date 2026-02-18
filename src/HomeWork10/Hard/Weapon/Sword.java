@@ -1,10 +1,10 @@
-package HomeWork10.Hard;
+package HomeWork10.Hard.Weapon;
 
 public class Sword extends Weapon {
     Sword(int power) {
         super(power);
     }
-    Sword(){
+    public Sword(){
         this(10);
     }
 }
