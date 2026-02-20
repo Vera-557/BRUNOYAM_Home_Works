@@ -1,4 +1,4 @@
-package HomeWork11.Middle;
+package HomeWork11.Hard;
 
 public class Hard {
     /*
